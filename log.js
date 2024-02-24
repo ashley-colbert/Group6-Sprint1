@@ -13,4 +13,8 @@ function logAction(actionDescription, username) {
     });
 }
 
-logAction('User login', 'john_doe');
+// logAction('User login', 'john_doe');
+
+module.exports = {
+    logAction
+}
