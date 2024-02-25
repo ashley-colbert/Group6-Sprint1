@@ -5,6 +5,7 @@ global.DEBUG = true;
 
 const fs = require("fs");
 const {logAction} = require('./log.js');
+const {initializeApp} = require('./init.js');
 
 const myArgs = process.argv.slice(2);
 
@@ -14,7 +15,8 @@ switch (myArgs[0]) {
   case 'init':
   case 'i':
       if(DEBUG) console.log(myArgs[0], ' - initialize the app.');
-    //   initializeApp(); import once init.js file is complete with a initializeApp() or similar function
+      //Function imported from init.js file to create necessary files and folders.
+      initializeApp();
       break;
   case 'config':
   case 'c':
