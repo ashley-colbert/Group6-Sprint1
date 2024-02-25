@@ -2,19 +2,23 @@ gymApp <command> <option>
 
 Usage:
 
-gymApp --help          displays help
+gymApp --help                            displays help
 
-gymApp init            initialize the app
-gymApp init --mk       create all the app folders
-gymApp init --cat      create all the app files
-gymApp init --all      create all the folders and files
+gymApp init --help                       displays help for the init command
+gymApp init --mk                         create all the app folders
+gymApp init --cat                        create all the app files
+gymApp init --all                        create all the folders and files
 
-gymApp config          create or change the app configuration
-gymApp config --show   show the contents of the config file
-gymApp config --reset  reset back to default the config file
-gymApp config --set    set a specific attribute of the config file
+gymApp config --help                     displays help for the config command
+gymApp config --show                     show the contents of the config file
+gymApp config --reset                    reset back to default the config file
+gymApp config --set                      set a specific attribute of the config file
 
-gymApp token           manage the user tokens
-gymApp token --list    list all the tokens
-gymApp token --count   provide a count of all the tokens
-gymApp token --new     add a new token
+gymApp token --help                      manage the user tokens
+gymApp token --count                     displays a count for the token command
+gymApp token --new <username>            generates a token for a given username, saves tokens to the json file
+gymApp token --upd p <username> <phone>  updates the json entry with a new phone number
+gymApp token --upd e <username> <email>  updates the json entry with a new email address
+gymApp token --search u <username>       fetches a token for a given username
+gymApp token --search e <email>          fetches a token for a given email
+gymApp token --search p <phone>          fetches a token for a given phone number
