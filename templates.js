@@ -6,6 +6,10 @@ const configjson = {
 
 }
 
+const tokenjson = {
+  
+}
+
 //export each variable or function that will be used throughout the app
 module.exports = {
   folders,
