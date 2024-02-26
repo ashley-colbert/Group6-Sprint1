@@ -1,0 +1,24 @@
+gymApp <command> <option>
+
+Usage:
+
+gymApp --help          displays all help
+
+gymApp init --help     displays help for the init command
+gymApp init --all      creates the folder structure and the config and help files
+gymApp init --mk       creates the folder structure
+gymApp init --cat      creates the config file with default settings and the help files
+
+gymApp config --help                   displays help for the config command
+gymApp config --show                   displays a list of the current config settings
+gymApp config --reset                  resets the config file with default settings
+gymApp config --set <option> <value>   sets a specific config setting
+
+gymApp token --help                     displays help for the token command
+gymApp token --count                    displays a count of the tokens created
+gymApp token --new <username>           generates a token for a given username, saves tokens to the json file
+gymApp token --upd p <username> <phone> updates the json entry with a new phone number
+gymApp token --upd e <username> <email> updates the json entry with a new email
+gymApp token --search u <username>      fetches a token for a given username
+gymApp token --search e <email>         fetches a token for a given email
+gymApp token --search p <phone>         fetches a token for a given phone number
