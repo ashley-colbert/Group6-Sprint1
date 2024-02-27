@@ -1,9 +1,14 @@
 global.DEBUG = true;
 
+//NPM package imports needed to run this page.
 const fs = require('fs');
 const path =  require('path');
 const fsPromises = require('fs').promises;
-const { folders, configjson, } = require('./templates');
+
+//imports from the templates.js page, and log.js file.
+const { folders, configjson, tokenjson} = require('./templates');
+const {logAction} = require('./log.js');
+
 
 async function createFolders() {
   if(DEBUG) console.log('init.createFolders()');
@@ -20,7 +25,7 @@ async function createFolders() {
       console.log(err);
     }
   };
-  
+
   if(mkcount === 0) {
     console.log('All folders already exist.');
   } else if (mkcount <= folders.length) {
@@ -57,8 +62,8 @@ function createFiles() {
       );
     } else {
       console.log('Token file already exists');
-    }
-  } catch(err) {
+    }  
+ } catch(err) {
     console.log(err);
   }
   };
