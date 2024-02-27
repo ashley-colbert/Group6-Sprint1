@@ -6,6 +6,7 @@ global.DEBUG = true;
 const fs = require("fs");
 const {logAction} = require('./log.js');
 const {initializeApp} = require('./init.js');
+const {tokenApp} = require('./tokens.js');
 const {readUsers,writeUsers,addUser} = require('./user-authentication.js');
 const {readJsonFile,writeJsonFile,readTextFile,writeTextFile} = require('./a-cli-file.js');
 const {configApp}  = require('./config.js');
@@ -45,7 +46,7 @@ switch (myArgs[0]) {
   case 'token':
   case 't':
       if(DEBUG) console.log(myArgs[0], ' - generate a user token');
-    //   tokenApp(); import once token.js file is complete with a tokenApp() function
+      tokenApp();
       break;
   case 'log':
   case 'l':
@@ -59,7 +60,7 @@ switch (myArgs[0]) {
       fs.readFile(__dirname + "/cliUsage.txt", (error, data) => {
           if(error) throw error
           //logs action to file app-events/log using imported logAction() function from log.js file
-          logAction("Help information accessed on CLI", null);
+          logAction('Help information accessed on CLI', 'admin');
           console.log(data.toString());
       });
 }
