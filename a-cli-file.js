@@ -62,3 +62,10 @@ if (textData) {
     const newText = textData + '\nAdded a new line!';
     writeTextFile(textFilePath, newText);
 }
+
+module.exports = {
+    readJsonFile,
+    writeJsonFile,
+    readTextFile,
+    writeTextFile
+}

@@ -7,8 +7,12 @@ const fs = require("fs");
 const {logAction} = require('./log.js');
 const {initializeApp} = require('./init.js');
 const {tokenApp} = require('./tokens.js');
+const {readUsers,writeUsers,addUser} = require('./user-authentication.js');
+const {readJsonFile,writeJsonFile,readTextFile,writeTextFile} = require('./a-cli-file.js');
+const {configApp}  = require('./config.js');
 
-const myArgs = process.argv.slice(2);
+
+const myArgs = process.argv.slice(5);
 
 if(DEBUG) if(myArgs.length >= 1) console.log('the gymApp.args: ', myArgs);
 
@@ -19,15 +23,35 @@ switch (myArgs[0]) {
       //Function imported from init.js file to create necessary files and folders.
       initializeApp();
       break;
+  case 'a-cli-file':
+  case 'a':
+      if(DEBUG) console.log(myArgs[0], ' - read and write json and text files.');
+      readJsonFile();
+      writeJsonFile();
+      readTextFile();
+      writeTextFile();
+      break;
   case 'config':
   case 'c':
-      if(DEBUG) console.log(myArgs[0], ' - display the configuration file');
-    //   configApp(); import once configApp(or similar) function is complete in config.js
+      if(DEBUG) console.log(myArgs[0], ' - display the configuration file.');
+      configApp();
+      break;
+  case 'new':
+  case 'n':
+      if(DEBUG) console.log(myArgs[0], ' - generate a new user.');
+      readUsers();
+      writeUsers();
+      addUser();
       break;
   case 'token':
   case 't':
       if(DEBUG) console.log(myArgs[0], ' - generate a user token');
       tokenApp();
+      break;
+  case 'log':
+  case 'l':
+      if(DEBUG) console.log(myArgs[0], ' - store new user authentication.');
+      logAction();
       break;
   case '--help':
   case '--h':

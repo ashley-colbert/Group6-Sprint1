@@ -39,3 +39,9 @@ if (username && password) {
 } else {
     console.error('Usage: user-auth <username <password>');
 }
+
+module.exports = {
+    readUsers,
+    writeUsers,
+    addUser,
+}
