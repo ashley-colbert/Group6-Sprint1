@@ -5,7 +5,7 @@ const { configjson } = require('./templates');
 
 function theDisplayConfig() {
     if(DEBUG) console.log('config.displayConfig()');
-    fs.readFile(__dirname + "/config.json", (error, data) => {
+    fs.readFile(__dirname + "/json/config.json", (error, data) => {
         if(error) throw error;
         console.log(JSON.parse(data));
     });
@@ -14,7 +14,7 @@ function theDisplayConfig() {
 function theResetConfig() {
     if(DEBUG) console.log('config.resetConfig()');
     let configData = JSON.stringify(configjson, null, 2);
-    fs.writeFile(__dirname + '/config.json', configData, (error) => {
+    fs.writeFile(__dirname + '/json/config.json', configData, (error) => {
         if(error) throw error;
         if(DEBUG) console.log('Config file reset to original state');
     });
@@ -25,7 +25,7 @@ function theSetConfig() {
     if(DEBUG) console.log(myArgs);
 
     let theMatch = false;
-    fs.readFile(__dirname + '/config.json', (error, data) => {
+    fs.readFile(__dirname + '/json/config.json', (error, data) => {
         if(error) throw error;
         if(DEBUG) console.log(JSON.parse(data));
         let cfg = JSON.parse(data);
@@ -41,7 +41,7 @@ function theSetConfig() {
         }
         if(DEBUG) console.log(cfg);
         data = JSON.stringify(cfg, null, 2);
-        fs.writeFile(__dirname + '/config.json', data, (error) => {
+        fs.writeFile(__dirname + '/json/config.json', data, (error) => {
             if (error) throw error;
             if(DEBUG) console.log('Config file updated successfully!');
         });

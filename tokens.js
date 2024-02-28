@@ -3,6 +3,8 @@ const fs = require ('fs');
 const path = require('path');
 const crc32 = require('crc/crc32');
 const { format, isPast, parseISO } = require('date-fns');
+const {logAction, logError} = require('./log.js');
+
 
 // slice off the first 2 arguments when return results if a request is made using the CLI
 const myArgs = process.argv.slice(2);
@@ -17,8 +19,10 @@ function tokenCount() {
       let tokens = JSON.parse(data);
       const count = tokens.length;
       console.log(`There are ${count} tokens in total`);
+      logAction(`There are ${count} tokens in total`)
     } catch (err) {
       console.log('Error returning token count', err);
+      logError('Error returning token count', err);
     }
   });
 }
@@ -53,6 +57,7 @@ function newToken(username) {
         if (err) console.log(err);
         else {
             console.log(`New token ${newToken.token} was created for ${username}.`);
+            logAction(`New token ${newToken.token} was created for ${username}.`)
         }
     })
     
@@ -76,6 +81,7 @@ function setPhone(username, newPhone) {
   fs.readFile(tokensFilePath, 'utf-8', (error, data) => {
     if (error) {
       console.error('Error reading the tokens file:', error);
+      logError('Error reading tokens.json file')
       return;
     }
 //will parse the data from the json file into an array to find the username.
@@ -84,6 +90,7 @@ function setPhone(username, newPhone) {
 
     if (tokenIndex === -1) {
       console.log(`No token found for username: ${username}`);
+      logAction(`No token found for username: ${username}`)
       return;
     }
 //this will change existing phone number into the new phone number that is entered into the command line
@@ -92,9 +99,11 @@ function setPhone(username, newPhone) {
     fs.writeFile(tokensFilePath, JSON.stringify(tokens, null, 2), 'utf-8', (writeError) => {
       if (writeError) {
         console.error('Error writing the updated tokens to the file:', writeError);
+        logError('Error writing updated tokens to file');
       } else {
         //Confirmation of the updated phone number will be logged to the console.
         console.log(`Phone number for username '${username}' updated to '${newPhone}'.`);
+        logAction(`Phone number for username '${username}' updated to '${newPhone}'.`)
       }
     });
   });
@@ -106,6 +115,7 @@ function setEmail(username, newEmail) {
   fs.readFile(tokensFilePath, 'utf-8', (error, data) => {
     if (error) {
       console.error('Error reading the tokens file:', error);
+      logError('Error reading the tokens file')
       return;
     }
 
@@ -114,6 +124,7 @@ function setEmail(username, newEmail) {
 
     if (tokenIndex === -1) {
       console.log(`No token found for username: ${username}`);
+      logAction(`No token found for username: ${username}`);
       return;
     }
 
@@ -124,6 +135,7 @@ function setEmail(username, newEmail) {
         console.error('Error writing the updated tokens to the file:', writeError);
       } else {
         console.log(`Phone number for username '${username}' updated to '${newEmail}'.`);
+        logAction(`Phone number for username '${username}' updated to '${newEmail}'.`);
       }
     });
   });
@@ -135,6 +147,7 @@ function searchUser(username) {
   fs.readFile(tokensFilePath, 'utf-8', (error, data) => {
     if (error) {
       console.error('Error reading the token file:', error);
+      logError('Error reading the tokens file')
       return;
     }
     //will parse the json data into a javascript array and find the username
@@ -145,6 +158,7 @@ function searchUser(username) {
 
       if(!tokenEntry) {
         console.log(`No token found for ${username}`)
+        logAction(`No token found for ${username}`)
         return;
       }
  //if the token is expired it will create a new token with will expire in 2 days.
@@ -160,9 +174,11 @@ function searchUser(username) {
           fs.writeFile(tokensFilePath, JSON.stringify(token, null, 2), 'utf-8', (writeError) => {
             if (writeError) {
               console.log("Error")
+              logError('Error writing tokens.json file')
             } else{
               //if a new token was create the new value will me logged to the console
               console.log(`New token: ${newTokenVal} created and saved for: ${username}`)
+              logAction(`New token: ${newTokenVal} created and saved for: ${username}`);
             }
           });
           } else {
@@ -172,6 +188,7 @@ function searchUser(username) {
         }
     } catch (err) {
       console.log("Error", err)
+      logError('Error retrieving username and token')
     }
   })
 }
@@ -181,6 +198,7 @@ function searchEmail(email) {
   fs.readFile(tokensFilePath, 'utf-8', (error, data) => {
     if (error) {
       console.error('Error reading the token file:', error);
+      logError('Error reading token file')
       return;
     }
 
@@ -205,9 +223,11 @@ function searchEmail(email) {
 
           fs.writeFile(tokensFilePath, JSON.stringify(token, null, 2), 'utf-8', (writeError) => {
             if (writeError) {
-              console.log("Error")
+              console.log("Error");
+              logError('Error reading tokens file')
             } else{
-              console.log(`New token: ${newTokenVal} created and saved for user with email: ${email}`)
+              console.log(`New token: ${newTokenVal} created and saved for user with email: ${email}`);
+              logAction(`New token: ${newTokenVal} created and saved for user with email: ${email}`);
             }
           });
           } else {
@@ -215,7 +235,8 @@ function searchEmail(email) {
           console.log("");
         }
     } catch (err) {
-      console.log("Error", err)
+      console.log("Error", err);
+      logError('Error retrieving email address and token')
     }
   })
 }
@@ -225,6 +246,7 @@ function searchPhone(phone) {
   fs.readFile(tokensFilePath, 'utf-8', (error, data) => {
     if (error) {
       console.error('Error reading the token file:', error);
+      logError('Error reading the token file')
       return;
     }
 
@@ -249,9 +271,11 @@ function searchPhone(phone) {
 
           fs.writeFile(tokensFilePath, JSON.stringify(token, null, 2), 'utf-8', (writeError) => {
             if (writeError) {
-              console.log("Error")
+              console.log("Error");
+              logError('Error writeing to tokens.json file');
             } else{
-              console.log(`New token: ${newTokenVal} created and saved for user with phone number: ${phone}`)
+              console.log(`New token: ${newTokenVal} created and saved for user with phone number: ${phone}`);
+              logAction(`New token: ${newTokenVal} created and saved for user with phone number: ${phone}`);
             }
           });
           } else {
@@ -260,6 +284,7 @@ function searchPhone(phone) {
         }
     } catch (err) {
       console.log("Error", err)
+      logError('Error retireving email address and phone number')
     }
   })
 }
