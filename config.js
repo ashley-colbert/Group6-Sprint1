@@ -12,7 +12,7 @@ function theDisplayConfig() {
 }
 
 function theResetConfig() {
-    if(DEBUG) console.log('config.resetConfig()');
+    if(DEBUG) console.log('config.theResetConfig()');
     let configData = JSON.stringify(configjson, null, 2);
     fs.writeFile(__dirname + '/json/config.json', configData, (error) => {
         if(error) throw error;
@@ -21,7 +21,7 @@ function theResetConfig() {
 }
 
 function theSetConfig() {
-    if(DEBUG) console.log('config.setConfig()');
+    if(DEBUG) console.log('config.theSetConfig()');
     if(DEBUG) console.log(myArgs);
 
     let theMatch = false;
