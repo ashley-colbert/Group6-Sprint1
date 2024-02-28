@@ -7,9 +7,9 @@ const fsPromises = require('fs').promises;
 
 //imports from the templates.js page, and log.js file.
 const { folders, configjson, tokenjson} = require('./templates');
-const {logAction} = require('./log.js');
+const {logAction, logError} = require('./log.js');
 
-
+//Will create any missing folders when the appropriate command is used in the command line. If the folders already exist a message will be logged to the console.
 async function createFolders() {
   if(DEBUG) console.log('init.createFolders()');
   let mkcount = 0;
@@ -23,17 +23,22 @@ async function createFolders() {
       }
     } catch (err) {
       console.log(err);
+      logError("Error creating folders");
     }
   };
-
   if(mkcount === 0) {
     console.log('All folders already exist.');
+    logAction('All folders already exist.')
   } else if (mkcount <= folders.length) {
     console.log(mkcount + ' of ' + folders.length + 'folders created.');
+    logAction('folders creater')
   } else {
-    console.log('Allfolders successfully created.');
+    console.log('All folders successfully created.');
+    logAction('All folders successfully created.')
   }
 };
+
+//this function will create the appropriate files in the JSON folder
 
 function createFiles() {
   if(DEBUG) console.log('init.createFiles()');
@@ -43,8 +48,10 @@ function createFiles() {
       fs.writeFile('./json/config.json', configdata, (err) => {
         if(err) {
           console.log(err)
+          logError('Error writing to config.json file.')
         } else {
           console.log('Data written to config file');
+          logAction('Data written to config file')
         }
       })
     } else {
@@ -55,20 +62,28 @@ function createFiles() {
       fs.writeFile('./json/tokens.json', tokendata, (err) => {
         if(err) {
           console.log(err)
+          logError('Error writing to tokens.json file')
         } else {
           console.log('Data written to tokens file.');
+          logAction('Data written to tokens file.')
         }
       }
       );
     } else {
       console.log('Token file already exists');
-    }  
+      logAction('Token file already exists')
+    }
  } catch(err) {
     console.log(err);
+    logError('Error creating files')
   }
   };
 
+  //removes the first 2 arguments as they are not needed.
+
   const myArgs = process.argv.slice(2);
+
+  //the initializeApp function will allow for different init -- commands to be used in the cli. The default will display the help menu from the cliUsage file.
 
   function initializeApp() {
     if(DEBUG) console.log('initializeApp()');

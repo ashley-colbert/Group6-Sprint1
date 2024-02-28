@@ -1,10 +1,15 @@
 //the folders that will be created when initializing the app.
-const folders = ['json', 'app-events.log']
+const folders = ['json', 'log']
 
 //Add templates that the json files will use here:
 const configjson = {
-
-}
+  name: 'AppConfigCLI',
+  version: '1.0.0',
+  description: 'The Command Line Interface (CLI) for the MyApp.',
+  main: 'myapp.js',
+  superuser: 'adm1n',
+  database: 'exampledb'
+};
 
 //Template for token data recorded in the tokenjson file.
 const tokenjson = [{

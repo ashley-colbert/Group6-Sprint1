@@ -12,7 +12,7 @@ const {readJsonFile,writeJsonFile,readTextFile,writeTextFile} = require('./a-cli
 const {configApp}  = require('./config.js');
 
 
-const myArgs = process.argv.slice(5);
+const myArgs = process.argv.slice(2);
 
 if(DEBUG) if(myArgs.length >= 1) console.log('the gymApp.args: ', myArgs);
 
