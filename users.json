@@ -245,6 +245,30 @@
   },
   {
     "username": "/usr/local/bin/node",
+    "password": "$2b$10$LvtLvIzIkT1UzHygG3Qzn.qjIVxNkTMLGTmqYJYcIblbrXfQQFx/S"
+  },
+  {
+    "username": "/usr/local/bin/node",
+    "password": "$2b$10$hREkUqv.WIeI44AZQBsWfOa9C2QjPO8RtlL1bGBC7gZzNXTQgorRu"
+  },
+  {
+    "username": "/usr/local/bin/node",
+    "password": "$2b$10$.om1K9GhfSdRSJNVOkF0O.zSTjhChy3XAX5HUkHYhu24PV5psn9oC"
+  },
+  {
+    "username": "/usr/local/bin/node",
+    "password": "$2b$10$pPEQaDyzyxdpjgowPJJXo.gXblirq5s6Ed8ujCROrs/1EdnJ63KOy"
+  },
+  {
+    "username": "/usr/local/bin/node",
+    "password": "$2b$10$3Gj/GuAcswgaH1D3M/AoDO9OvSp7zDme1ywq1FYTCogu2MtHfhlsG"
+  },
+  {
+    "username": "/usr/local/bin/node",
+    "password": "$2b$10$yz.xlMI9IZHBgyS.LDs6M.oYWeZKZvSB0i0l3/K6wi3lQaY7qXtdq"
+  },
+  {
+    "username": "/usr/local/bin/node",
     "password": "$2b$10$47gmJPGNdcB8HVovWyATfeHWQbSX6L8GWOeh8RlXla3rqNsT8H0.."
   },
   {
