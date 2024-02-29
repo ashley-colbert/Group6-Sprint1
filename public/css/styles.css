@@ -1,0 +1,40 @@
+body {
+  background-image: url("../images/gym2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 5% 20% 5% 20%;
+}
+
+h1 {
+  color: rgb(38, 38, 86);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: italic;
+  font-size: 4em;
+}
+
+input {
+  width: 60%;
+  padding: 1%;
+  margin: 1%
+}
+
+
+.button {
+  background-color: black;
+  border: 2px solid #16054f;
+  border-radius: 15px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+
+.button:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
