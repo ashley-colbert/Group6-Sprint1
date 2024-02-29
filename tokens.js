@@ -258,7 +258,7 @@ function searchPhone(phone) {
       let now = new Date();
 
       if(!tokenEntry) {
-        console.log(`No token found for user with email: ${phone}`)
+        console.log(`No token found for user with phone: ${phone}`)
         return;
       }
 
@@ -274,7 +274,7 @@ function searchPhone(phone) {
           fs.writeFile(tokensFilePath, JSON.stringify(token, null, 2), 'utf-8', (writeError) => {
             if (writeError) {
               console.log("Error");
-              logError('Error writeing to tokens.json file');
+              logError('Error writing to tokens.json file');
             } else{
               console.log(`New token: ${newTokenVal} created and saved for user with phone number: ${phone}`);
               logAction(`New token: ${newTokenVal} created and saved for user with phone number: ${phone}`);
@@ -286,7 +286,7 @@ function searchPhone(phone) {
         }
     } catch (err) {
       console.log("Error", err)
-      logError('Error retireving email address and phone number')
+      logError('Error retrieving email address and phone number')
     }
   })
 }
