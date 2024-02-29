@@ -1,3 +1,5 @@
+// Written by Ashley Colbert, Jay Eagles, and Ethan Miller
+// February 29, 2024
 
 //The basic cli for the gymApp
 
