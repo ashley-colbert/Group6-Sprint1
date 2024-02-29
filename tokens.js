@@ -4,12 +4,12 @@ const path = require('path');
 const crc32 = require('crc/crc32');
 const { format, isPast, parseISO } = require('date-fns');
 const {logAction, logError} = require('./log.js');
-
+global.DEBUG = true;
 
 // slice off the first 2 arguments when return results if a request is made using the CLI
 const myArgs = process.argv.slice(2);
 
-//function to count how many tokens are in the tokens.json file.
+// function to count how many tokens are in the tokens.json file.
 function tokenCount() {
   if(DEBUG) console.log('token.tokenCount()');
   
@@ -27,7 +27,8 @@ function tokenCount() {
   });
 }
 
-//function to add a new user to the tokens.json file
+
+// function to add a new user to the tokens.json file
 function newToken(username) {
   if(DEBUG) console.log('token.newToken()');
   let newToken = JSON.parse (`{
@@ -49,15 +50,16 @@ function newToken(username) {
   newToken.expires = `${format(expires, 'yyyy-MM-dd HH:mm:ss')}`;
   fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
     if(error) throw error;
+  
     let tokens = JSON.parse(data);
     tokens.push(newToken);
     userTokens = JSON.stringify(tokens);
 
-    fs.writeFile(__dirname + '/json/tokens.json', userTokens, (err) => {
+      fs.writeFile(__dirname + '/json/tokens.json', userTokens, (err) => {
         if (err) console.log(err);
         else {
-            console.log(`New token ${newToken.token} was created for ${username}.`);
-            logAction(`New token ${newToken.token} was created for ${username}.`)
+            console.log(`New token ${newToken.token} was created.`);
+            logAction(`New token ${newToken.token} was created.`)
         }
     })
     
@@ -346,5 +348,6 @@ function tokenApp() {
 }
 module.exports = {
   tokenApp,
+  newToken
 }
 
